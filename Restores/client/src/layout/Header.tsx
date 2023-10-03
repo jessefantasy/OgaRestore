@@ -2,6 +2,7 @@ import { ColorLens, ShoppingCart } from "@mui/icons-material";
 import { AppBar, Badge, IconButton, List, ListItem, Toolbar, Typography } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
 import { useStoreContext } from "../app/context/StoreContext";
+import { useAppSelector } from "../app/store/configureStore";
 
 const midLinks  = [
     {title: 'catalog', path: '/catalog'},
@@ -17,7 +18,9 @@ const rightLinks  = [
 
 
 export default function Header() {
-const {basket} = useStoreContext();
+// const {basket} = useStoreContext();
+    const {basket} = useAppSelector(state => state.basket);
+
 const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
 
 
@@ -38,11 +41,11 @@ const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
                     ))  }
                 </List>
             
-            <IconButton component={Link} to='/basket'  size='large' edge="start" color='inherit' sx={{ mr: 2 }} >
-                <Badge badgeContent={itemCount} color="secondary">
-                    <ShoppingCart/>
-                </Badge>
-            </IconButton>
+                <IconButton component={Link} to='/basket' size='large' edge='start' color='inherit' sx={{ mr: 2 }}>
+                        <Badge badgeContent={itemCount} color="secondary">
+                            <ShoppingCart />
+                        </Badge>
+                    </IconButton>
 
                 <List sx={{ display: 'flex'}}>
                     { rightLinks.map(({title, path}) => (
