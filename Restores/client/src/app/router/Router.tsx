@@ -15,6 +15,7 @@ import Login from "../../features/account/Login";
 import Register from "../../features/account/Register";
 import RequireAuth from "./RequireAuth";
 import Orders from "../../features/orders/Orders";
+import CheckoutWrapper from "../../features/checkout/CheckoutWrapper";
 
 interface Props {
     products?: Product[]; // Make products optional by adding "?"
@@ -28,7 +29,7 @@ export const router = createBrowserRouter([
         children:  [
                 // authenticated routes
                 {element: <RequireAuth />, children: [
-                    {path: 'checkout', element: <CheckoutPage />},
+                    {path: 'checkout', element: <CheckoutWrapper />},
                     {path: 'orders', element: <Orders />},
                 ]},
                 // admin routes

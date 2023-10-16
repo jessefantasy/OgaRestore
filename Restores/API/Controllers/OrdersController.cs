@@ -27,24 +27,19 @@ namespace API.Controllers
                 .Where(x => x.BuyerId == User.Identity.Name)
                 .ToListAsync();
 
-                return orders;
-            
-
-            // return await _context.Orders.Include(o => o.OrderItems).Where(x => x.BuyerId == User.Identity.Name).ToListAsync();
+            return orders;
         }
 
         [HttpGet("{id}", Name = "GetOrder")]
         public async Task<ActionResult<OrderDto>> GetOrder(int id)
-        {   
-            // return await _context.Orders.Include(o => o.OrderItems).Where(x => x.BuyerId == User.Identity.Name && x.Id == id).FirstOrDefaultAsync();
-
+        {
             return await _context.Orders
                 .ProjectOrderToOrderDto()
                 .FirstOrDefaultAsync(x => x.BuyerId == User.Identity.Name && x.Id == id);
         }
  
         [HttpPost]
-        public async Task<ActionResult<Order>> CreateOrder(CreateOrderDto orderDto)
+        public async Task<ActionResult<int>> CreateOrder(CreateOrderDto orderDto)
         {
             var basket = await _context.Baskets
                 .RetrieveBasketWithItems(User.Identity.Name)
@@ -86,7 +81,7 @@ namespace API.Controllers
                 ShippingAddress = orderDto.ShippingAddress,
                 Subtotal = subtotal,
                 DeliveryFee = deliveryFee,
-                // PaymentIntentId = basket.PaymentIntentId
+                PaymentIntentId = basket.PaymentIntentId
             };
 
             _context.Orders.Add(order);

@@ -37,12 +37,12 @@ export default function PaymentForm({cardState, onCardInputChange}: Props) {
             autoComplete="cc-number"
             variant="outlined"
             InputLabelProps={{ shrink: true }}
-            // InputProps={{
-            //   inputComponent: StripeInput,
-            //   inputProps: {
-            //     component: CardNumberElement
-            //   }
-            // }}
+            InputProps={{
+              inputComponent: StripeInput,
+              inputProps: {
+                component: CardNumberElement
+              }
+            }}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -56,12 +56,12 @@ export default function PaymentForm({cardState, onCardInputChange}: Props) {
             autoComplete="cc-exp"
             variant="outlined"
             InputLabelProps={{ shrink: true }}
-            // InputProps={{
-            //   inputComponent: StripeInput,
-            //   inputProps: {
-            //     component: CardExpiryElement
-            //   }
-            // }}
+            InputProps={{
+              inputComponent: StripeInput,
+              inputProps: {
+                component: CardExpiryElement
+              }
+            }}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -75,12 +75,12 @@ export default function PaymentForm({cardState, onCardInputChange}: Props) {
             autoComplete="cc-csc"
             variant="outlined"
             InputLabelProps={{ shrink: true }}
-            // InputProps={{
-            //   inputComponent: StripeInput,
-            //   inputProps: {
-            //     component: CardCvcElement
-            //   }
-            // }}
+            InputProps={{
+              inputComponent: StripeInput,
+              inputProps: {
+                component: CardCvcElement
+              }
+            }}
           />
         </Grid>
       </Grid>
